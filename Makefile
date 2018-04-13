@@ -5,21 +5,11 @@ CFLAGS = -Wall -g -O0
 #linker 
 LIBS = -lm
 
-LIBPOS=libpos.a
-
-#include Files
-SRCS = util_keyword.c
-OBJS =  $(addsuffix .o, $(basename $(SRCS)))
 
 all: keyword
 
-%.o: %.c $(DEPS)
-		$(CC) -c -o $@ $< $(CFLAGS)
-		
-keyword: main.c $(LIBPOS)
-		$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
-		
-$(LIBPOS) : $(OBJS)
+keyword: $(CC) $(LIBS) main.c util_keyword.c keyword
 
 clean:
-		rm -rf *.o keyword $(LIBPOS)
+		rm -rf *.o keyword 
+		echo "clean successfully!"
