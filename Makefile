@@ -8,7 +8,8 @@ LIBS = -lm
 
 all: keyword
 
-keyword: $(CC) $(LIBS) main.c util_keyword.c keyword
+keyword: 
+	$(CC) $(LIBS) main.c util_keyword.c keyword
 
 clean:
 		rm -rf *.o keyword 
