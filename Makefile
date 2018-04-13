@@ -6,12 +6,12 @@ CFLAGS = -Wall -g -O0
 LIBS = -lm
 
 OUT = -o
+OUTNAME = keyword
 
-all: keyword
+all: clean keyword
 
 keyword: 
-	$(CC) $(LIBS) main.c util_keyword.c $(OUT) keyword
+	$(CC) $(LIBS) main.c util_keyword.c $(OUT) $(OUTNAME)
 
 clean:
 		rm -rf *.o keyword 
-		echo "clean successfully!"
