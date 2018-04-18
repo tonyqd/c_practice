@@ -3,24 +3,23 @@
 #include "util_keyword.h"
 #include "util_datatype.h"
 
-void main()
-{
-  //Dateiname:
-  char fileName[256];
-  int * keywordLocation;
-  char ** keywordArray;
+int main(int argc, char *argv[]) {
+    if(argc <= 1) {
+        printf("Kein Argument wurde uebermittelt.");
+        return 0;
+    }
 
-  int err = 0;
+    char fileName[256];
+    int * keywordLocation;
+    char ** keywordArray;
 
-  err = readFile(fileName, keywordLocation, keywordArray);
-  
-  if (err < 0)
-  {
-    printf("Someting is wrong!!! ");
+    // Read and check file
+    if(readFile(fileName, keywordLocation, keywordArray) > 0 ) {
+
+        dummy();
+
+        return 0;
+    }
+    printf("Datei konnte nicht gelesen werden.");
     exit(0);
-  }
-  
-  dummy();
-
 }
-
