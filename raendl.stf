@@ -1,0 +1,1041 @@
+{**} 
+* ibm2iso und key's für david 31 von kurt am Mon Apr 11 15:03:17 MESZ 2005     * raendl-adt-lf.stf.hilb31  ADT: Auftrags-Änderungsmaske     24.03.03
+         *
+         *                         L a b o r a r z t  -  P r a x i s
+         *
+         * ------------------------------------------------------------
+         * Achtung  !!  CRT-Maske muß auf mindestens 36 Zeilen ein-
+         *              gestellt sein  !!
+         *              => CRT-Maske vergrößern
+         *                 CRT:   -> Options   -> Session Preferences ->
+         *                  " :   .. Emulation -> Logical rows: 36
+         *                 CRT:   -> Options   -> Save Settings Now
+         *
+         * ------------------------------------------------------------
+         * Wunsch   !!  Anzeige des Reor-Flags in der Auftragsmaske  !!
+         * ------------------------------------------------------------
+         *
+         * 19.03.03 WF  D a v i d   3 . 0  -  A n p a s s u n g e n  !!
+         *
+         *    ---------------------------------------------------------
+         *    A.afrei21        ->  KuPr4221               -> #KPS  [ok]
+         *    A.afrei41        ->  AfNehmer               -> #AUF  [ok]
+         *    A.afrei42        ->  AbrQuar                -> #AQU  [ok]
+         *    A.afrei62        ->  AReTag,AReMon,AReJah   -> #KDT  [ok]
+         *    A.aFTx2          ->  VANrErst               -> #EVA  [ok]
+         *    A.KtRec          ->  KtKVAbr,KtRPat,KtREin  -> #KKV  [ok]
+         *    A.KtRec          ->          KtRLgm,KtRPLg  -> #KPL  [ok]
+         *    A.KtUgr          ->  KtAbrb           -> #QKU, #YKU  [ok]
+         *    A.UmZiDr         ->  UmKVAbr                -> #KVU  [ok]
+         *    A.UmsO1          ->  UmKVPkt                -> #KVP  [ok]
+         *    A.aKunde[ 1.. 4] ->  KennzO12               -> #O1K  [ok]
+         *    A.aKunde[ 5.. 8] ->  KennzO3                -> #O3K  [ok]
+         *    ---------------------------------------------------------
+         *
+         * 11.09.02 WF  #TAU  allgemeine Infos zum Auftrag !
+         * 05.09.02 WF  #POS  poststationäre Leistungen
+         * 16.10.01 WF  #TPI  eingebaut (Patienten-R³ckidentifikation)
+         * 15.10.01 WF  #AEQ  Kreis-26 = Q  (Bakteriologie - M03)
+         * 10.10.01 WF  #AEE  und  #AEG  temporär eingesetzt ! 
+         *               -->  ändere Kreis-Nummer-E  und  -G !
+         * 21.09.01 WF  #SGM zur Anzeige von Bildern (OCR etc.)
+*----------------------------------------------------------------------
+*  #TKL  =>  Auft.TklA    = klinische Angaben                   FK 4209
+*  #T42  =>  Auft.Anford  = angeforderte Untersuchungen         FK 4209
+*  #T43  =>  Auft.UebwAn  = f³r den weiterbehandelnden Arzt     FK 4243
+*  #T44  =>  Auft.AbrDiag = Abrechnungsdiagnosen ICD-Code's     FK 6001
+*                "                   "     , FK 6003, FK 6004 + FK 6006
+*----------------------------------------------------------------------
+*
+*
+*
+*---------------------------------------------------------- 18.02.03 ---
+*                    Offset:
+*   #Zl #Sp   Boxen  Zl  Sp                       Box      Farbe
+*   -------------------------------------------------------------------
+* 
+*               Hauptmenue f³r die Eingabe der Suchkriterien      "$SPA"
+  .  24  70    #SPA   2   5    0        0  X     _box      __WB   
+*
+*               Menue:  Ändern Stammdaten - Patient        "$PAD"/"$APA"
+  .  33  80    #APA   0   0    0        0  XY    _box      __BW
+*
+*               Menue:  Ändern Auftragsdaten               "$AFD"/"$AFA"
+  .  35  80    #AFA   0   0    0        0  X     _box      __BW
+* 
+*               Menue:  Auftrag Ändern   
+  .  22  80    #AFD   0   0    0        0  X     _box      __BW
+*
+*               Selectionbox  Darstellung aller Meßwerte eines Auftrags
+  .  30 120    #SEM   6   1    0        0  X     _box      __BW
+* 
+*               Selectionbox  Auswahl der grafischen Meßwerte
+  .  10  40    #SEG  11  40    0        0  X     _box      ___B
+*
+*               Menue:  Ändern / Erfassen einer Untersuchung 
+  .   4  40    #UNA  17  30    0        0  X     _box      __BW
+*
+*   ------------------------------------------------------- 24.01.03 ---
+*   #Zl #Sp   Boxen  Zl  Sp                       Box      Farbe
+* 
+*               Selectionbox Auswahl Kostenträger
+  .  23  78    #KSL  10   1    0        0  0     _box      __BW
+* 
+*               Selectionbox Auswahl Einsender
+  .  15  70    #ESL   7   5    0        0  0     _box      __BW
+* 
+*   ------------------------------------------------------- 24.01.03 ---
+*   #Zl #Sp   Boxen  Zl  Sp                       Box      Farbe
+* 
+*               Selectionbox Auswahl bei Namens- Geb.-Suche
+  .  27  78    #SEP   5   1    0        0  0     _box      __BW
+* 
+*               Selectionbox Auswahl Aufträge gleicher Auftragsnummer
+  .  27  78    #SUT   8   1    0        0  0     _box      __BW
+* 
+*               Selectionbox Auswahl Aufträge gleicher Auftragsnummer
+*                            (evtl. verschiedene Patienten)
+  .  28  78    #SEN   4   1    0        0  X     _box      __BW
+*
+*               Selectionbox Auswahl Aufträge  EINES  Patienten
+  .  27  76    #SEA   5   2    0        0  0     _box      __BW
+* 
+*               Selectionbox Auswahl Kostenträger, Einsender
+  .  17  78    #SEK   4   1    0        0  X     _box      __BW
+*
+*               Selectionbox Darstellung des ADT-Feldes 4209 und 4243 !
+  .   6  72    #DBT  21   4    0        0  X     _box      __BW
+*
+*               Eingabe der AKrE-Nr f³r ADT-Listen  
+  .   4  50    #AKE  17  20    0        0  X     _box      __BW
+*
+*               Wird fast nie gebraucht, nur f³r Notfälle
+  .   3  80    #ANT  20   0    0        0  X     _box      __CR   
+*
+*   ------------------------------------------------------- 18.02.03 ---
+*   #Zl #Sp   Boxen  Zl  Sp                       Box      Farbe
+*
+*               Selectionbox Help-Funktion
+  .  30  78    #HLP   1   1    0        0  X     _box      __YG
+  .  30  78    #ABK   1   1    0        0  X     _box      __YG
+* 
+*               Fehlerausgabe    
+  .   1  78    #FEH  36   1    0        0  X        0      __RB 
+*
+*               Function-Keys
+  .   1  80    #FKI  38   0    0        0  X        0      __GW   
+*
+*               Function-Tasten
+  .   1  80    #FKY  38   0    0        0  X        0      __GW   
+*
+*   ------------------------------------------------------- 24.01.03 ---
+*   #Zl #Sp   Boxen  Zl  Sp                       Box      Farbe
+* 
+*               Selectionbox Darstellung eines Meßwertes (Scope)
+  .  14  60    #SCO   8  10    0        0  X     _box      __BW
+* 
+*               Erfassung/Änderurng eines MKunde-Faktors  
+  .  14  60    #MKF   8  10    0        0  X     _box      __BW
+*
+*               ADT Ändern   
+  .  21  80    #ADA   0   0    0        0  X     _box      __BW
+*
+*               Auftragsdarstellung ³ber Meßwert-Darstellung
+  .   7  78    #AAM   0   1    0        0  XY    _box      __BW
+*
+*
+*               Auftragskontrolle: Select Queue   
+  .   15 50    #SQU   5   20   0        0  XY    _box      __BW
+*
+*
+*               Auftragskontrolle: Queuefilter   erfassen
+  .   18 60    #QFI   4   10   0        0  XY    _box      __BW
+*               Auftragskontrolle: BitFilter     erfassen
+  .   18 90    #BFI   4   10   0        0  XY    _box      __BG
+*
+*               Auftragskontrolle: BitFilter Auftragsfeld aLaber  erfasssen
+  .   10 50    #A3D   4   10   0        0  XY    _box      __BG
+  .   10 50    #B3D   4   10   0        0  XY    _box      __BG
+*
+*
+*               Auftragskontrolle: Kommentartext erfassen
+  .   10 70    #KOM   5    5   0        0  XY    _box      __BW
+*
+  .    8 20    #SU1  10   40   0        0  XY    _box      __BW
+  .    8 20    #SU2  11   50   0        0  XY    _box      __BW
+*
+*
+*               Auftragsnummern-Eingabe Auftragskontrolle  
+  .   7  40    #AFN  10   20   0        0  X     _box      __CR   
+*
+*
+*     Gutshrift Privatrechnung Patient bearbeiten
+  .   8  60    #RGD  10   4    0        0  X     _box      __BW
+*
+  .  30 100    #VXM  40   2    0        0  0     _box      __BW
+* --------------------------------------------------------- 23.01.03 ---
+*
+      0   0  $FKI  
+      0   0  DFOL 1 AK-DFO1
+      0   0  EO#  1 yps+mm   
+      0   0  EO#  2 achim_   
+      0   0    __
+  .   0   0  $FKI     0   0    0        0  C        0         0
+  .   1   1   EiEi   80   0    1-80     8  SC       0         0   
+*              Auswahlbox f³r Grafik-Meßwerte (Scheine, Elphokurve etc.)
+  .  10  40   #SGM   11  40    0        0  X     _box      ___B 
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*  Darstellung des Analyten in der Meßwertdarstellung
+*     0   0  $DMW  
+*     1   1    ____________
+* .   0   0  $DMW     0   0    0        0  C        0         0
+* .   1   1   Uabku  8      
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+      0   0  $FKY  
+      0   0    __
+  .   0   0  $FKY     0   0    0        0  C        0         0
+  .   1   1   EiEi   80   0    1-80     8  SC       0         0   
+*
+*
+*
+*---------------------------------------------------------- 24.01.03 ---
+*             Funktionstaste F2 für die Darstellung der Auftragsliste in sep. Raendl
+*-----------------------------------------------------------------------
+*
+      0   0  $FU2                   
+      1   1   /david/bin/raendl.run ALD_$
+*
+*---------------------------------------------------------- 24.01.03 ---
+*             Funktionstaste F5 für die Übersicht in der Meßwerteingabe
+*-----------------------------------------------------------------------
+*
+      0   0  $FU5                   
+      1   1   /david/bin/pamela.run
+      2   1   EORT_1_TXT_MAU0_AE_ANGF_WOMI_LÖOK_LZOK_GLEX AF_$_ARCV   /david/trast/bibak.stf.hilb31g
+*     2   1   EORT_1_GRAF_BIBA_WDAT_7500_TXT_MAU0_ZEIK_8_AE_ANNA_ENDB_4002-4003_ANGF_ZEIG_4000_WOMI_LÖOK_LZOK_GLEX 
+*     2   1   _ AF_$_ARCV   /david/trast/bibak.stf.hilb31g
+*
+*
+*
+* ----------- Haupt-Maske --------------------------------- 06.02.03 ---
+*
+*             10        20        30        40        50        60
+* Lineal      _123456789_123456789_123456789_123456789_123456789_1234567
+*
+      0   0  $SPA                   
+      1  10   ADT-ABRECHNUNG :  L a b o r a r z t    ---   P r a x i s
+      2  10   _______"_______:  Ändern der Stammdaten und der Aufträge
+      3  10   --------------------------------------------------------
+      8  10   Auftragsnummer :
+      9  10   Name           :
+     10  10   Geburtsdatum   :
+     11  10   Fall-Nummer    :
+     15  10   Geben Sie soviele Kriterien wie möglich ein, um die
+     16  10   Suche einzugrenzen und starten Sie den Suchlauf mit "F8"
+     17  10   _______________________________Abbruch="F7"   Hilfe="F1"
+     22  10   _______________MEDAT Computer-Systeme
+*
+  .   0   0  $SPA            0   0     0        0  X        0         0
+  .  12  30   #KOM           0   0     0        0  X        0         0
+  .   8   1   #AFN          10   0     1-10     8  SC       0         0
+  .   8  30   AfNr          10   0     1-10     8  S        0         0
+  .   9  44   #NAM          32   0     44-76    8  SC       0         0
+  .   9  30   Name          32   0     44-76    8  S        0         0
+  .  10  30   #GEB          10   0     30-42    8  SC       0         0
+  .  10  30   GDat          10   0     30-42    8  S        0         0
+  .  11  11   #AUN          16   0     11-29    8  SC       0         0
+  .  11  30   AuNr          16   0     11-29    8  S        0         0
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+*
+      0   0  $RGD                  
+      2   3   Gutschrift erstellen:        
+      4   3   Datum      
+      5   3   RNum       
+      6   3   Betrag     
+* 
+  .   0   0  $RGD            0   0     0        0  X        0         0
+  .   2   3   #ATR          21   0     0        0  XC       F         0
+  .   2   25  #GNA           
+  .   4   10  RRRDAT        10   0     29-38    8  SC       0         0
+  .   5   10  RRNUM         15   0     9-28     8  SC       0         0
+  .   6   10  #GBT          8    0     0        0  SY       0         0
+* .   6   10  RBTR          5    0     49-52   32  I        0     30000
+
+*
+*
+      0   0  $QFI                  
+      2   3   Filter der Auftragskontrolle
+      4   3   "Ab"  Datum/Zeit                 
+      5   3   "Bis" Datum/Zeit                 
+      7   3   Nur Mit Analyt Nr.               
+      8   3   Nur oh. Analyt Nr.               
+      9   3   Excl. Einsender                  
+     10   3   Aufträge von Nr.                 
+     10  34   bis
+     10  50   Art:
+     11   3   Rückstellung:                    
+     12   3   Nur Auft mit KV                  
+     12  34   ohne KV                           
+     13   3   Einsenderfolge                   
+     13  34   negFolge                    
+     13  48   AbreFilt                    
+     14   3   Auftragnehmer               
+     15   3   Einleseorte                 
+     16   3   Lab-Bereich  suchen   ausschl.  
+
+  .   0   0  $QFI            0   0     0        0  X        0         0
+  .   2   3   #ATR          30   0     0        0  XC       F         0
+  .   4  23   #VDT          20   0     0        8  SY       0         0
+  .   5  23   #BDT          20   0     0        8  SY       0         0
+  .   7  23   #UNM          10   0     0        8  SY       0         0 
+  .   8  23   #UNO          10   0     0        8  SY       0         0 
+  .   9  23   #ENU          20   0     0        8  SY       0         0 
+  .  10  23   #VNU          10   0     0        8  SY       0         0 
+  .  10  38   #BNU          10   0     0        8  SY       0         0 
+  .  10  56   #ART           2   0     0        8  SY       0         0 
+  .  11  23   #DFR           2   0     0        8  SY       0         0 
+  .  12  25   #MKV           2   0     0        8  SY       0         0 
+  .  12  44   #OKV           2   0     0        8  SY       0         0 
+  .  13  23   #EFO          10   0     0        8  SY       0         0 
+  .  13  44   #NEF           2   0     0        8  SY       0         0 
+  .  13  57   #BFG           2   0     0        8  SY       0         0 
+  .  14  25   #AFN           2   0     0        8  SY       0         0 
+  .  15  25   #ELO           2   0     0        8  XC       0         0 
+  .  16  22   #B3D           2   0     0        8  SY       0         0 
+  .  16  33   #A3D           2   0     0        8  SY       0         0 
+*
+*
+*
+      0   0  $A3D                  
+      2   2   aLaber   Ausschluss 
+
+  .   0   0  $A3D            0   0     0        0  X        0         0
+  .   2   2   #ATR          40   0     0        0  XC       F         0
+  .   5   2   aLaber        25   0    1-4       1  BA     
+*
+*
+*
+      0   0  $B3D                  
+      2   2   aLaber   suchen                     
+
+  .   0   0  $B3D            0   0     0        0  X        0         0
+  .   2   2   #ATR          40   0     0        0  XC       F         0
+  .   5   2   aLaber        25   0    1-4       1  BA     
+*
+*
+*
+      0   0  $BFI                  
+      2   2   Abrechnungs-Filter der Auftragskontrolle
+      4   2   Exakte Deckung                           
+      4  30   Ausschluss                               
+      4  58   Aufzählung                               
+
+      9   2   oder
+     11   2   oder
+     13   2   oder
+
+      9  30   oder
+     11  30   oder
+     13  30   oder
+
+      9  58   oder
+     11  58   oder
+     13  58   oder
+
+  .   0   0  $BFI            0   0     0        0  X        0         0
+  .   2   2   #ATR          48   0     0        0  XC       F         0
+  .   4   2   #ATR          15   0     0        0  XC       U         0
+  .   4  30   #ATR          15   0     0        0  XC       U         0
+  .   4  58   #ATR          15   0     0        0  XC       U         0
+
+  .   5   2   FMaskEQ       25   0    1-4       1  BAC    
+  .   8   2   FMaskEQ1      25   0    5-8       1  BA     
+  .  10   2   FMaskEQ2      25   0    9-12      1  BA     
+  .  12   2   FMaskEQ3      25   0   13-16      1  BA     
+  .  14   2   FMaskEQ4      25   0   17-20      1  BA     
+* .  16   2   FMaskEQ5      25   0   21-24      1  BA     
+* .  18   2   FMaskEQ6      25   0   25-28      1  BA     
+* .  20   2   FMaskEQ7      25   0   29-32      1  BA     
+* .  22   2   FMaskEQ8      25   0   33-36      1  BA     
+* .  24   2   FMaskEQ9      25   0   37-40      1  BA     
+* .  26   2   FMaskEQ10     25   0   41-44      1  BA     
+
+  .   5  30   FMaskNEG      25   0   45-48      1  BAC    
+  .   8  30   FMaskNEG1     25   0   49-52      1  BA     
+  .  10  30   FMaskNEG2     25   0   53-56      1  BA     
+  .  12  30   FMaskNEG3     25   0   57-60      1  BA     
+  .  14  30   FMaskNEG4     25   0   61-64      1  BA     
+* .  16  30   FMaskNEG5     25   0   65-68      1  BA     
+* .  18  30   FMaskNEG6     25   0   69-72      1  BA     
+* .  20  30   FMaskNEG7     25   0   73-76      1  BA     
+* .  22  30   FMaskNEG8     25   0   77-80      1  BA     
+* .  24  30   FMaskNEG9     25   0   81-84      1  BA     
+* .  26  30   FMaskNEG10    25   0   85-88      1  BA     
+
+  .   5  58   FMaskPOS      25   0   89-92      1  BAC    
+  .   8  58   FMaskPOS1     25   0   93-96      1  BA     
+  .  10  58   FMaskPOS2     25   0   97-100     1  BA     
+  .  12  58   FMaskPOS3     25   0  101-104     1  BA     
+  .  14  58   FMaskPOS4     25   0  105-108     1  BA     
+* .  16  58   FMaskPOS5     25   0  109-112     1  BA     
+* .  18  58   FMaskPOS6     25   0  113-117     1  BA     
+* .  20  58   FMaskPOS7     25   0  118-120     1  BA     
+* .  22  58   FMaskPOS8     25   0  121-124     1  BA     
+* .  24  58   FMaskPOS9     25   0  125-128     1  BA     
+* .  26  58   FMaskPOS10    25   0  129-132     1  BA     
+
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+      0   0  $MKF                 
+      2   3   Änderung eines messwertindividuellen Faktors
+      5   3   Verfahren:                
+      5  49   §_____GOÄ                 
+      6   3   Kostentr.:                
+      8   3   Erfassung eines neuen Faktors[X,xxx]:
+
+  .   0   0  $MKF            0   0     0        0  X        0         0
+  .   5  15   #UNA   
+  .   5  50   #ZIF   
+  .   6  15   #KNA   
+  .   6  50   #KFA  
+  .   8  50   #AFK  
+  .   8  50   ##FA           6   0     1-15     8  S        0         0
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+      0   0  $SCM                  
+      8  20   Meßwert   :                
+     12  20   Berechtigt:                
+  .   0   0  $SCM            0   0     0        0  X        0         0
+  .   7  45   #MKZ           8   0
+  .   8  35   Mtyp           1   0     53       8  IC       0         0
+  .   8  45   Mwwt           5   0     33-36   32  RC       0         0
+  .  10  20   MFlg          32   0     49-52    1  BA       0         0
+  .  11  20   #MAB          32  
+  .  12  35   #BER      
+*
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+      0   0  $AFN                  
+      2   5   Bitte geben Sie eine       
+      3   5   Auftragsnummer ein :       
+  .   0   0  $AFN            0   0     0        0  X        0         0
+  .   5   5   ##AF          15   0     1-15     8  S        0         0
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+      0   0  $SCU                  
+      9  20   Verfahren :                
+  .   0   0  $SCU            0   0     0        0  X        0         0
+  .   9  35   #NAM          20   0 
+*  .   9  35   Name          32   0     25-56    8  SC       0         0
+*
+*
+*
+* ---------  $PAD  =  S t a m m s a t z m a s k e  -------- 19.03.03 ---
+*
+*                      10        20        30        40        50
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*
+      0   0  $PAD                  
+      1   1   A D T - S t a m m s a t z  (LF)   ä n d e r n : 
+      1  51   __FallNr : ffffffffffffffff
+      2   1   -----------------------------------------------
+      2  51   __DB-ppnr    : xxxxxxxxxxxx
+      3   1   Patient    : pppppppppppppppppppppppppppppppp 
+      3  51   __Geboren am : gt.gm.gjah
+      4   1   Anrede     : aaaaaaaaaaaaaaaa
+      4  51   __Geschlecht : g = Geschl.__
+      5   1   Titel      : tttttttttttttttt Zusatz: zzzzzzzzzzzz...
+      6   1   Name,Vornam: nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn,vvvv...
+      7   1   Straße,PlzO: ssssssssssssssssssssssssssssssss,oooo...
+      8   1   VersKart-Nr: vvvvvvvvvvvv     g³ltig bis: mm/jjjj
+      8  51   __VK-Status: xxxx x
+      9   1   ___________: 
+      9  51   __VK-leEinl: tt.mm.jjjj
+     10   1   ___________: 
+
+     11   1   Hauptvers. : -------------------------------------
+     11  51   ---- GebDt: tt.mm.jjjj  ----
+     12   1   Anrede     : aaaaaaaaaaaaaaaa Zusatz: zzzzzzzzzzzz...
+     12  51   ____ Titel: tttttttttttttttt
+     13   1   Name,Vornam: nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn,vvvv...
+     14   1   Straße,PlzO: ssssssssssssssssssssssssssssssss,oooo...
+     15   1   ___________: 
+
+     16   1   ---------- : -------------------------------------
+     16  51   ----------------------------
+     17   1   Einsender  : _____  ________  ____________________...
+     17  51   ____________   KV: _________
+     18   1   Kostenträgr: _____  ________  ____________________...
+     18  51   ____________   IK: _________
+     19   1   KTAbBereich:  ______(_=KTAB)
+     19  51   ____________   VK: _________
+
+     21   1   KT-Wechsel :        Nr. KT-W-Datum  KT-Abku KTAB
+     21  51   Nr._KT-W-Datum  KT-Abku KTAB
+     22   1   KT-Wechsel :        [1] tt.mm.jjjj  aaaaaaaaKTAB  
+     22  51   [5] tt.mm.jjjj  aaaaaaaaKTAB
+     23   1   KT-Wechsel :        [2] tt.mm.jjjj  aaaaaaaaKTAB  
+     23  51   [6] tt.mm.jjjj  aaaaaaaaKTAB
+     24   1   KT-Wechsel :        [3] tt.mm.jjjj  aaaaaaaaKTAB  
+     24  51   [7] tt.mm.jjjj  aaaaaaaaKTAB
+     25   1   KT-Wechsel :        [4] tt.mm.jjjj  aaaaaaaaKTAB  
+     25  51   [8] tt.mm.jjjj  aaaaaaaaKTAB
+     26   1   ---------- : -------------------------------------
+     26  51   ----------------------------
+
+     28   1   BehArt -SAH: _____________      Pat-Typ: "__"
+     28  51   _____Aufnahme  : __.__.____ 
+     29   1   Rech-Status: ________________________________ 
+     29  51   _____Entlassung: __.__.____ 
+     30   1   (Ändern"F1") __Ü__#_KV Ei Pr LG LP __________ 
+*
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*                      10        20        30        40        50
+*
+* ---------  $PAD = Patienten-Stammsatz - anzeigen  ------- 25.02.03 ---
+*
+  .   0   0  $PAD            0   0     0        0  X        0         0
+  .   1  62   #APH          16   0     0        0  XC       0         0
+  .   2  66   #SAP          12   0     0        0  XC       0         0 
+  .   3  14   #APN          32   0     0        0  XC       0         0
+  .   3  66   #GDT          10   0     0        0  xC       0         0 
+  .   4  14   #SPA          16   0     0        0  XC       0         0
+  .   4  66   #SEX           2   0     0        0  xC       0         0 
+  .   5  14   #SPT          16   0     0        0  XC       0         0
+  .   5  39   #SPZ          16   0     0        0  XC       0         0
+  .   6  14   #SPF          32   0     0        0  XC       0         0
+  .   6  47   #SPV          32   0     0        0  XC       0         0
+  .   7  14   #SPS          32   0     0        0  XC       0         0
+  .   7  47   #SPP          32   0     0        0  XC       0         0
+  .   8  14   #PVK          12   0     0        0  XC       0         0
+  .   8  43   #PGV           8   0     0        0  XC       0         0
+  .   8  64   #PVS           4   0     0        0  XC       0         0
+  .   8  69   #QOW          10   0     0        0  XC       0         0
+  .   9  64   #QKT          10   0     0        0  XC       0         0
+  .  11  63   #GDR          10   0     0        0  XC       0         0 
+  .  12  14   #SRA          16   0     0        0  XC       0         0
+  .  12  39   #SRZ          16   0     0        0  XC       0         0
+  .  12  63   #SRT          16   0     0        0  XC       0         0
+  .  13  14   #SRF          32   0     0        0  XC       0         0
+  .  13  47   #SRV          32   0     0        0  XC       0         0
+  .  14  14   #SRS          32   0     0        0  XC       0         0
+  .  14  47   #SRP          32   0     0        0  XC       0         0
+  .  17  14   #SEI           5   0     0        0  XC       0         0 
+  .  17  21   #SEK           8   0     0        0  XC       0         0 
+  .  17  31   #SEN          32   0     0        0  XC       0         0 
+  .  17  72   #SER           9   0     0        0  XC       0         0 
+  .  18  14   #SKR           5   0     0        0  XC       0         0 
+  .  18  21   #SKK           8   0     0        0  XC       0         0 
+  .  18  31   #SKN          32   0     0        0  XC       0         0 
+  .  18  70   #SKI           9   0     0        0  XC       0         0 
+  .  19  15   #KTB          18   0     0        0  XC       0         0 
+  .  19  70   #SKV           9   0     0        0  XC       0         0 
+  .  22  25   #SK1          24   0     0        0  XC       0         0
+  .  23  25   #SK2          24   0     0        0  XC       0         0
+  .  24  25   #SK3          24   0     0        0  XC       0         0
+  .  25  25   #SK4          24   0     0        0  XC       0         0
+  .  22  55   #SK5          24   0     0        0  XC       0         0
+  .  23  55   #SK6          24   0     0        0  XC       0         0
+  .  24  55   #SK7          24   0     0        0  XC       0         0
+  .  25  55   #SK8          24   0     0        0  XC       0         0
+  .  28  14   #BAR           4   0     0        0  XC       0         0
+  .  28  68   #ADT          10   0     0        0  XC       0         0
+  .  29  14   #SPB          32   0     0        0  XC       0         0
+  .  29  68   #EDT          10   0     0        0  XC       0         0
+  .   1   1   #RBU           0   0     0        0  XC       0         0
+*
+* ---------  $PAD = Patienten-Stammsatz - ändern ---------- 19.03.03 ---
+*
+  .   0   0  $APA            0   0     0        0  X        0         0
+  .   1   1   #ATR          48   0     0        0  XC       F         0
+  .   1   1   #WBU           0   0     0        0  XC       0         0
+  .   1  62   #PFA          16   0     0        8  SY       0         0
+  .   3  66   #GDT          10   0     0        0  SY       0         0 
+  .   4  14   #PAN          16   0     0        0  SY       0         0
+  .   4  66   #SEX           2   0     0        8  SY       0         0 
+  .   5  14   #PTI          16   0     0        8  SY       0         0
+  .   5  39   #PZN          16   0     0        8  SY       0         0
+  .   6  14   #PFN          32   0     0        8  SY       0         0
+  .   6  47   #PVN          32   0     0        8  SY       0         0
+  .   7  14   #PST          32   0     0        8  SY       0         0
+  .   7  47   #PPO          32   0     0        8  SY       0         0
+  .   8  14   #PVK          12   0     0        8  SY       0         0
+  .   8  43   #VDT          10   0     0        8  SY       0         0
+  .   8  64   #PVS           4   0     0        0  SY       0         0
+  .   8  69   #YOW           1   0     0        8  SY       0         0
+  .   9  64   #QKT          10   0     0        8  SY       0         0
+  .  11  63   #GDR          10   0     0        8  SY       0         0 
+  .  12  14   #RAN          16   0     0        8  SY       0         0
+  .  12  39   #RZN          16   0     0        8  SY       0         0
+  .  12  63   #RTI          16   0     0        8  SY       0         0
+  .  13  14   #RFN          32   0     0        8  SY       0         0
+  .  13  47   #RVN          32   0     0        8  SY       0         0
+  .  14  14   #RST          32   0     0        8  SY       0         0
+  .  14  47   #RPO          32   0     0        8  SY       0         0
+  .  17  14   #ENU          10   0     0        8  SY       0         0 
+  .  18  14   #KNU          10   0     0        8  SY       0         0 
+  .  19  15   #KTB          18   0     0        0  SY       0         0 
+  .  22  25   #SK1          24   0     0        0  SY       0         0
+  .  23  25   #SK2          24   0     0        0  SY       0         0
+  .  24  25   #SK3          24   0     0        0  SY       0         0
+  .  25  25   #SK4          24   0     0        0  SY       0         0
+  .  22  55   #SK5          24   0     0        0  SY       0         0
+  .  23  55   #SK6          24   0     0        0  SY       0         0
+  .  24  55   #SK7          24   0     0        0  SY       0         0
+  .  25  55   #SK8          24   0     0        0  SY       0         0
+* .  28  14   #BAR           1   0     0        0  SY       0         0
+  .  28  68   #ADT          10   0     0        0  SY       0         0
+  .  29  68   #EDT          10   0     0        0  SY       0         0
+*
+*
+*
+* ---------  $AFD  =  A u f t r a g s m a s k e  ---------- 24.03.03 ---
+*
+*                      10        20        30        40        50
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*
+      0   0  $AFD
+      0   0   AADT  1.6.1997
+      1   1   ADT: Ändern Auftragsdaten   Auftrags-Nr.: ________
+      1  51   ____FallNr: ________________
+      2   1   _____(LF)___[Datenb.]_______Kreis-E--Nr.: ________
+*     2  51   ____KreisG: _________
+      2  51   ____Index : _________
+      3   1   DB-ppnr:____________ ------ Life-Nummer :_________
+      3  51   ___ ------------------------
+      4   1   Patient: ________________________________  geboren
+      4  51   :___.__.______Gesc:
+      5   1   FamName: ________________________________  Titel  :
+      5  51   ____________________AfNe:__
+      6   1   Vorname: ________________________________  NamZus.:
+      6  51   ____________________ElOr:__
+      7   1   Straße : ________________________________
+      7  51   _____________Praxis-Auft: _
+      8   1   Plz.Ort: ________________________________  Pat.IKN
+      8  51   r : _________Pt.VKNr: _____
+
+      9   1   Vers-Nr: ________________________________  VK-g³lt
+      9  51   ig: mm/jjjj__BArt:______
+     10   1   Schein-UG: __  (27=ÜbwLabor;41-46=Notf.)   VK-Stat
+     10  51   us: ____________E:_______
+     11   1   Pat-ID.  : _________________  Notfall? __  AusSt-D
+     11  51   at: tt.mm.jjjj
+
+     12   1   KuPräSoBe: _   KZf-OI/II: _____  KZf-OIII: _____
+     12  51   ___VA-Nr.Erst-VA.: _________
+     13   1   AbrGebiet: __  PersKreis: __     Unfall/Folg: _
+     13  51   ___poststat-Lstg.: _
+     14   1   SKT-Zusa_: -______________________________ AbrZeit
+     14  51   rm:_-____________________
+
+     15   1   Diagnose : -__________________________________________
+     15  54   ReNr.:  
+     16   1   ICD-Code : -__________________________________________
+     16  54   RDat.:  
+     17   1   angf.Unts: -__________________________________________
+     18   1   wbeh.Arzt: -__________________________________________
+
+     19   1   KV-Kostrg:  ________  ________________________________
+     19  51   ______________IK: _________
+     20   1   _[_____] :     KT-AB: _______     GebOrd: ____  Ab
+     20  51   rArt: ____    VK: _________
+
+     21   1   Einsender:  ________  ________________________________
+     21  51   ______________KV: _________
+     22   1   _[_____] :  ________________________ _____________
+     22  51   _________ T:______________
+
+     23   1   AbreQuart:______ RechDatum: tt.mm.jjjj KV-Umsatz:x
+     23  51   xxxxx,xx EUR / _________ Pkt
+     24   1   ____"____:_jjjjq_____________
+     24  51   EinleseDat: __.__.____ __:__
+     25   1   RechnungsStatus: ________________________________
+     25  51   AbnahmeDat: __.__.____ __:__
+     26   1   (Ändern mit "F1")     # KV Ei Pr LG LP
+     26  51   FertigsDat: __.__.____
+     27   1   Auftr.Txt: -__________________________________________
+     27  15   Pl:         
+     28   1   Pat.-_Txt: -__________________________________________
+     29   1   --------------------------------------------------
+     29  51   ----------------------------
+     30   1   EI: aaaaaaaa tttt;  PR: aaaaaaaa tttt;  LG: aaaaaa
+     30  51   aa tttt;  LP: aaaaaaaa tttt;
+     31   1   ____[xxxxx]             [xxxxx]             [xxxxx
+     31  51   ]             [xxxxx]
+*
+*     3  51   --  KreisQ: __________  ----
+*     9  51   ig: mm/jjjj   lEi:tt.mm.jjjj
+*    24   1   Ü-Schein vorhdn: .           jjjjmmtt
+*
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*                      10        20        30        40        50
+*
+* ---------  $AFD = drucken/anzeigen der Parameter  ------- 24.03.03 ---
+*
+  .   0   0  $AFD            0   0     0        0  C        0         0
+  * Nur zum Test der Auftragskontrolle : Meßwertdarstellung
+  .  15  15   #DFO           1   0     0        0  XC       5        40 
+
+  .   1   1   #RBU           0   0     0        0  XC       0         0 
+  .   1  43   #SEU          10   0     0        0  XC       0         0 
+  .   1  63   #SAF          16   0     0        0  XC       0         0 
+  .   2  13   #SET           1   0     0        0  XC       0         0 
+  .   2  43   #SEE          10   0     0        0  XC       0         0 
+* .   2  63   #SEG          10   0     0        0  XC       0         0 
+  .   2  63   #SIX          10   0     0        0  XC       0         0 
+  .   3   9   #SAP          12   0     0        0  XC       0         0 
+  .   3  42   #LIF          16   0     0        0  XC       0         0 
+**             Kreisnummer-Q
+**.   3  63   #SEQ          10   0     0        0  XC       0         0 
+  .   4  10   #SPN          32   0     0        8  XC       0         0
+  .   4  53   #GDT          10   0     0        0  SY       0         0 
+  .   4  71   #SEX           2   0     0        8  SY       0         0 
+  .   5  10   #SPF          32   0     0        8  XC       0         0
+  .   5  53   #SPT          16   0     0        8  XC       0         0
+  .   5  77   #AUF           2   0     0        8  XC       0         0
+  .   6  10   #SPV          32   0     0        8  XC       0         0
+  .   6  53   #SPZ          16   0     0        8  XC       0         0
+  .   6  76   #SEL           2   0     0        8  XC       0         0
+  .   7  10   #QPS          32   0     0        8  XC       0         0
+  .   7  77   #PXA           1   0     0        8  XC       0         0
+  .   8  10   #QPP          32   0     0        8  XC       0         0
+  .   8  55   #QPI           9   0     0        0  XC       0         0
+  .   8  73   #QPV           5   0     0        0  XC       0         0
+  .   9  10   #SVE          32   0     0        0  XC       0         0
+  .   9  55   #QGU           7   0     0        0  XC       0         0 
+  .   9  69   #BAR          10   0     0        0  XC       0         0
+**             Versichertenkarte: letztes Einlesedatum
+**.   9  69   #QKT          10   0     0        0  XC       0         0 
+
+  .  10  12   #SUG           2   0     0        0  XC       0         0 
+  .  10  55   #QVS          10   0     0        0  XC       0         0
+  .  10  69   #QOW          10   0     0        0  XC       0         0
+  .  11  12   #TPI          17   0     0        0  XC       0         0 
+  .  11  40   #DNF           2   0     0        0  XC       0         0 
+  .  11  55   #QUD          10   0     0        0  XC       0         0 
+  .  12  12   #KPS           1   0     0        0  XC       0         0
+  .  12  27   #O1K           5   0     0        0  XC       0         0
+  .  12  44   #O3K           5   0     0        0  XC       0         0
+  .  12  70   #EVA           9   0     0        0  XC       0         0
+  .  13  12   #AGB           2   0     0        0  XC       0         0
+  .  13  27   #PRS           2   0     0        0  XC       0         0
+  .  13  47   #UNF           1   0     0        0  XC       0         0
+  .  13  70   #POS           1   0     0        0  XC       0         0
+  .  14  12   #SKT          30   0     0        0  XC       0         0
+  .  14  55   #GKD          21   0     0        0  XC       0         0
+  .  15  12   #TKL           1   0     0        0  X        0         0
+  .  15  60   #RNU          12   0     0        0  XC       0         0
+**             Abrechnungsdiagnosen - FK 6001
+**.  16  12   #T44           1   0     0        0  X        0         0
+  .  16  60   #RDA          12   0     0        0  XC       0         0
+  .  17  12   #T42           1   0     0        0  X        0         0
+**            Standort 1
+  .  17  54   #m01           7   1     0        0  X        1        40
+  .  18  54   #m01          10   1     0        0  X        1        40 
+  .  19  54   #m02           7   1     0        0  X        1        40 
+
+  .  18  12   #T43           1   0     0        0  X        0         0
+
+  .  19  13   #KKV          40   0     0        0  XC       0         0 
+# .  19  68   #SIK           9   0     0        0  XC       0         0 
+  .  20   3   #KKV           5   0     0        0  XC       0         0 
+  .  20  23   #QKU           7   0     0        0  XC       0         0 
+  .  20  43   #TKV           4   0     0        0  XC       0         0 
+  .  20  57   #QAA           4   0     0        0  XC       0         0 
+**             Patient.pVKNr ->  KomSt = 2
+  .  20  68   #KKV           9   2     0        0  XC       0         0 
+  .  21  13   #SEK           8   0     0        0  XC       0         0 
+  .  21  23   #SEN          32   0     0        0  XC       0         0 
+  .  21  70   #SER           9   0     0        0  XC       0         0 
+  .  22   3   #SEI           5   0     0        0  XC       0         0 
+  .  22  13   #SES          26   0     0        0  XC       0         0 
+  .  22  40   #SEP          20   0     0        0  XC       0         0 
+  .  22  63   #SE9          16   0     0        0  XC       0         0 
+**             Einsender.Straße
+**.  22  23   #SES          26   0     0        0  XC       0         0 
+**             Einsender.PLZ Ort
+**.  22  51   #SEP          26   0     0        0  XC       0         0 
+  .  23  11   #AQU           6   0     0        0  XC       0         0 
+  .  23  29   #KDT          10   0     0        0  XC       0         0 
+  .  23  50   #KVU           9   0     0        0  XC       0         0 
+  .  23  66   #KVP           9   0     0        0  XC       0         0 
+**             Patient.PFlg-C_pUebws - Überweisungsschein vorhanden J/N
+**.  24  18   #ZUE           1   0     0        0  XC       0         0 
+  .  24  24   #BT6           1   0     0        0  XC       0         0 
+  .  24  63   #SED          18   0     0        0  XC       0         0 
+
+  .  25  18   #SAB          32   0     0        0  XC       0         0 
+  .  25  63   #SAD          16   0     0        0  XC       0         0 
+  .  26  63   #SFD          10   0     0        0  XC       0         0 
+  .  27  18   #SQP          32   0     0        0  XC       0         0 
+  .  27  12   #TAU           1   0     0        0  X        0         0
+  .  28  12   #TP3           1   0     0        0  X        0         0
+  .  30   5   #KRE          13   0     0        0  XC       0         0
+  .  30  25   #KRP          13   0     0        0  XC       0         0
+  .  30  45   #KRL          13   0     0        0  XC       0         0
+  .  30  65   #KPL          13   0     0        0  XC       0         0
+  .  31   6   #KRE           5   0     0        0  XC       0         0
+  .  31  26   #KRP           5   0     0        0  XC       0         0
+  .  31  46   #KRL           5   0     0        0  XC       0         0
+  .  31  66   #KPL           5   0     0        0  XC       0         0
+  .  33  10   #SAd          10   0     0        0  XC       0         0
+  .  33  30   #SAz          10   0     0        0  XC       0         0
+  .  33  50   #SAL          10   0     0        0  XC       0         0
+  .   1   1   #RBU           0   0     0        0  C        0         0
+*
+* ---------  $AFA = ändern der Parameter  ----------------- 07.02.03 ---
+*
+  .   0   0  $AFA            0   0     0        0  C        0         0
+  .   1   1   #WBU           0   0     0        0  C        0         0
+  .   1   1   #ATR          26   0     0        0  XC       F         0
+  .   1  52   #NFG           1   0     0        8  SY       0         0
+  .   1  63   #AAF          16   0     0        8  SYC      0         0
+  .   2   1   #ATR          10   0     0        0  XC       F         0
+**.   2  43   #AEE          10   0     0        0  XY       0         0 
+**.   2  63   #AEG          10   0     0        0  XY       0         0 
+**.   3  63   #AEQ          10   0     0        0  XY       0         0 
+  .   4  53   #GDT          10   0     0        0  SY       0         0 
+  .   4  71   #SEX           2   0     0        8  SY       0         0 
+  .   5  10   #PFN          32   0     0        8  SY       0         0
+  .   5  53   #PTI          16   0     0        8  SY       0         0
+  .   5  77   #AUF           2   0     0        8  XY       0         0
+  .   6  10   #PVN          32   0     0        8  SY       0         0
+  .   6  53   #PZN          16   0     0        8  SY       0         0
+  .   6  76   #SEL           2   0     0        8  XY       0         0
+  .   7  10   #AST          32   0     0        8  SY       0         0
+  .   8  10   #APL          32   0     0        8  SY       0         0
+  .   9  10   #AVE          32   0     0        8  SY       0         0 
+  .   9  55   #YGU          10   0     0        8  SY       0         0 
+**.   9  69   #BAR           1   0     0        0  SY       0         0
+  .  10  12   #SUG           2   0     0        8  SY       0         0 
+  .  10  55   #YVS           4   0     0        8  SY       0         0 
+  .  10  69   #YOW          10   0     0        8  SY       0         0
+
+  .  11  12   #TPI           1   0     0        0  XY       0         0 
+**.  11  39   #NFG           1   0     0        0  SY       0         0 
+  .  11  40   #NFG           1   0     0        0  SYC      0         0 
+  .  11  55   #YAU          10   0     0        8  SY       0         0 
+  .  12  12   #KPS           1   0     0        8  SY       0         0
+  .  12  27   #O1K           5   0     0        0  XY       0         0
+  .  12  44   #O3K           5   0     0        0  XY       0         0
+  .  12  70   #EVA           9   0     0        0  XY       0         0
+  .  13  12   #AGB           2   0     0        0  XY       0         0
+  .  13  27   #PRS           2   0     0        0  XY       0         0
+  .  13  47   #UNF           1   0     0        0  SY       0         0
+  .  13  70   #POS           1   0     0        0  SY       0         0
+  .  14  12   #SKT           1   0     0        0  SY       0         0
+  .  14  55   #GKD           1   0     0        0  SY       0         0
+  .  15  12   #TKL           1   0     0        0  XY       0         0
+  .  15  77   #RGU           1   0     0        0  SY       0         0
+**.  16  12   #T44           1   0     0        0  XY       0         0
+  .  17  12   #T42           1   0     0        0  XY       0         0
+  .  18  12   #T43           1   0     0        0  XY       0         0
+
+* Anzeige MAbFlg-Status Bearblab
+  .  17  54   #m01           15  0     0        8  SY       0         0
+  .  18  54   #m02           15  0     0        8  SY       0         0
+
+  .  19  13   #SKK           8   0     0        0  XC       0         0 
+  .  19  23   #SKN          32   0     0        0  XC       0         0 
+**.  20   3   #KNU          10   0     0        8  SY       0         0 
+  .  20   3   #KKV          10   0     0        8  SY       0         0 
+  .  20  23   #YKU           7   0     0        0  SY       0         0 
+  .  22   3   #ENU          10   0     0        8  SY       0         0 
+**.  24  18   #AUE           1   0     0        8  SY       0         0 
+  .  24  24   #BT6           1   0     0        0  SC       0         0 
+  .  24  63   #EDA          10   0     0        0  SY       0         0 
+
+  .  25  18   #YAB          32   0     0        0  SY       0         0
+  .  27  18   #YQP          32   0     0        0  SF       0         0
+  .  25  63   #ADA          10   0     0        0  SYC      0         0 
+  .  26  63   #FDA          10   0     0        0  SY       0         0 
+  .  27  12   #TAU           1   0     0        0  XY       0         0
+  .  28  12   #TP3           1   0     0        0  XY       0         0
+  .  30   5   #KRE          13   0     0        0  XY       0         0
+  .  30  25   #KRP          13   0     0        0  XY       0         0
+  .  30  45   #KRL          13   0     0        0  XY       0         0
+  .  30  65   #KPL          13   0     0        0  XY       0         0
+  .  33  10   #ADD          10   0     0        0  XY       0         0
+  .  33  30   #ADZ          10   0     0        0  XY       0         0
+*
+*
+*
+* ----------- Selectbox - Einsender ----------------------- 23.01.03 ---
+*
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*                      10        20        30        40        50
+*
+      0   0  $E0                    
+      1   1   ___Nr._Abku_____Einsender-Name_______Zusatz_______
+      1  51   __________________Telefon
+*     -----------------
+  .   0   0  $ESL  
+  .   1   1   #NR      6   
+  .   1   8   EAbku    8   
+  .   1  17   EName   20   
+  .   1  38   EZusa   30  
+  .   1  69   ETele   18   
+*
+*
+*
+* ----------- Selectbox - Kostenträger -------------------- 23.01.03 ---
+*
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*                      10        20        30        40        50
+*
+      0   0  $K0                    
+      1   1   ___Nr.__Abk³rzng___VK-Nr___IK-Nummer___Kostenträger-Name
+*     -----------------
+  .   0   0  $KSL    
+  .   1   1   #NR      5   
+  .   1   9   KKABKU   8
+  .   1  19   KKVKNR   6
+  .   1  27   KKIKNR  10
+  .   1  40   KKName  32   
+*
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+  .   0   0  $AFL            0   0     0        0  C        0         0
+  .   1   1   #WBU           0   0     0        0  C        0         0
+  .   1   1   #TUP           0   0     0        0  XC       0         0 
+*
+  .   0   0  $ANT            0   0     0        0  X        0         0
+  .   1   1   Eiei          75   0     1-75     8  SC       0         0 
+  .   1  -1   ##Q1           2   0     1-2      0  X        0         0 
+*
+      0   0  $AKE                   
+  .   0   0  $AKE            0   0     0        0  X        0         0
+  .   1   5   #SRT          30   0     0        0  XC       0         0
+  .   2   5   ##UN          30   0     1-20     8  S        0         0
+*
+      0   0  $UNA                   
+      1   5   Eingabe :     (Hilfe  = "F1")
+      2  20   X                             
+  .   0   0  $UNA            0   0     0        0  X        0         0
+  .   2   5   ##UN          30   0     1-20     8  S        0         0
+*
+      0   0  $AAD                   
+      1   1   __Auft-Nr:_x___________________nnnnnnnnnnnnnnnnnnn
+      1  51   nnnnnnnnn_____*
+      2   1   __AZ/PtNr:_xxxxxxxxxx
+  .   0   0  $AAD            0   0     0        0  X        0         0
+  .   1  12   #SEU           1   0     0        0  XC       0         0 
+  .   1  32   Name          28   0     1-32     8  SC       0         0
+  .   1  66   #GDT          12   0     0        0  SC       0         0 
+  .   2  12   #PID          10   0     0        0  XC       0         0 
+  .   3   5   #TKL          76   0     0        0  XC       0         0 
+  .   4   5   #ANF          76   0     0        0  XC       0         0 
+*
+* Lineal      123456789_123456789_123456789_123456789_123456789_1234567
+*                      10        20        30        40        50 
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+  .   0   0  $PAL            0   0     0        0  C        0         0
+  .   1   1   #TUP           0   0     0        0  XC       0         0 
+*
+*
+* --------------------------------------------------------- 23.01.03 ---
+*
+*
+* $AUS   Auswahl Menue  (XRec)
+*   verzweigt in die Routinen
+*                           - Stammdaten Patienten
+*                           - Aufträge
+*                           - Meßwerte      
+*
+* $ANR  Einlesen der Aufnahmenummer (Ändern  Aufträge)  (Medwin_Menue)
+*   
+* $AFD  Auftrag darstellen  (SchreibRec)  
+*   wird als erster in drei Schritten (darstellen, verändern, speichern)
+*   generiert.
+*   #SEU Schreiben Auftragsnummer
+*   #SEI Schreiben Id-Nr. (Einsender)
+*   #SET Schreiben, ob Auftrag im Tagessystem ist
+*   #SAN Schreiben Name des Patienten im Auftrag
+*   #SEN Schreiben Name des Einsenders
+*   #SEA Schreiben Anrede des Einsenders
+*   #SES Schreiben Straße des Einenders
+*   #SEP Schreiben PLZO des Einsenders
+*   #SPU Schreiben Preisgruppe Untersuchung aus Rechnungs-Struktur
+*   #SPM Schreiben Preisgruppe Material aus Rechnungs-Struktur
+*   #SPM Schreiben Preisgruppe Porto aus Rechnungs-Struktur
+*   #SSF Schreiben Steigerungsfaktor  
+*   
+*   #RBU Read Buffer : Übertragen der Genrierten Bildschirm-Seite 
+*                      in einen Puffer, der während  der
+*                      Funktion "Darstellen mit verändern" wieder
+*                      eingeblendet wird.
+*                      Dies MUSS das letzte Keyword der Generierung 
+*                      in diesem Fenster sein.
+*
+* $AFA   Auftrag mit verändern darstellen (XRec : Rsta-Bits);
+*   #WBU   erster Befehl, um das in "$AFD" aufbereitete Fenster 
+*          in den Bildschirm zu schreiben.
+*   #ENU   Einsender-Nummer. Dies Keyword triggert gleichzeitig bei
+*          einer eingegebenen Zahl den Update der Rechnungs-Struktur.
+*          Derzeit noch keine ingabemöglichkeit f³r Strings.
+*   ##EI   Allgemeiner H³pfpunkt. Hiermit kann man nur kreuz und 
+*          quer ³ber den Bildschirm.
+*   RSta   Rechnungs-Status 
+*   ##RBU  Auslesen der Auftragsdaten wieder in den Puffer, damit
+*          die Struktur OHNE Echo auf dem Bildschirm im nächsten 
+*          Fenster gelesen werden kann und in den Auftrag 
+*          zur³ckgeschrieben wird.
+* 
+* $AFL   Auftrag Lesen(SchreibRec)
+*   #WBU   Gepufferte Daten wieder in den Bildschirm schreiben.
+*   #LPU   Lies Preisgruppe Untersuchung (Rechnungs-Struktur)
+*   #LPM   Lies Preisgruppe Material (Rechnungs-Struktur)
+*   #LPO   Lies Preisgruppe Porto (Rechnungs-Struktur)
+*   #LSF   Lies Steigerungsfaktor (Rechnungs-Struktur)
+*
+* $ANT   Antwort bei zuvielen Datensätzen (Medwin_Menue)
+*          Diese Frage wird gestellt, wenn die Anzahl der in der 
+*          Datenbank gefundenen Datensätze eine bestimmte Konstante
+*          ³berschreitet un zur Auswahl in mehreren Seiten a 256
+*          Patienten zwingt. Frage : Trotzdem Weiter ? 
+*
+* $SPA   Ändern Stammdaten Patient (XRec)
+*          Eingabe von verschiedenen Suchkriterien.
+*          Dabei wird ein String ³bergeben an das Programm, der 
+*          von der Generierung in drei Teile zerlegt wird.
+*          17-27 ist das Geburtsdatum
+*          28-60 ist der Name
+*          61-71 ist die Aufnahmenummer
+*
+* $AEP   Ändern Patient (Xrec:Patient)
+*   #GDT   Geburtsdatum
+*   #SEX   Geschlecht
+*   #STK   Einsenderk³rzel 
+*   #ADA   Abnahmedatum
+*   #EDA   Entlaßdatum  
+*   #ADT   Aufnahmedatum
+*   #EDT   Entlaßdatum  
+*   #KOS   Kostenträger-K³rzel
+*
+*   #DBT   Zusatz-Maske zur Eingabe mehrere Zeilen f³r ADT FK-4209.
+*          In der Hauptmaske, muß dazu in der Zeile "ADT-FK4209 :"
+*          ein  "F2"  eingegeben werden, damit man in die ADT-FK-4209-
+*          Zusatzmaske kommt und dort den Text anschauen und editieren
+*          kann. (Mit "F8" den Text speichern!)
+*
+{**} 
