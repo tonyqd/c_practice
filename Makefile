@@ -11,7 +11,7 @@ OUTNAME = keyword
 all: clean keyword
 
 keyword: 
-	$(CC) $(LIBS) main.c util_keyword.c $(OUT) $(OUTNAME)
+	$(CC) $(CFLAGS) $(LIBS) main.c util_keyword.c $(OUT) $(OUTNAME)
 
 clean:
 		rm -rf *.o keyword 
