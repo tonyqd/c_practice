@@ -9,6 +9,7 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
+
     char *fileName = argv[1];
     int * keywordLocation;
     char ** keywordArray;
