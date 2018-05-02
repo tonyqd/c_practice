@@ -7,54 +7,78 @@ int readFile(char * fileName, int * keywordLocation, char ** keywordArray)
   int returnValue = -1;
   int counter = 0;
   int arlength;
+  int strstrausgabe;
+  int strstrausgabe2;
   char **arrayinput;
+  char **backupKeywordArray;
+  int  *backupLocationArray;
+  char buff[500];
+  FILE *file;
 
 //Liest die Datei ein und zählt die Anzahl der Zeilen
-   file = fopen(fileName, "r");
-
+    file = fopen(fileName, "r");
     while(fgets (buff, 200,file)){
-	counter ++;
+       counter ++;
     }
-   rewind(finle);
-   printf("Diese Datei hat %d Zeilen", counter);
+    rewind(file);
+    printf("Diese Datei hat %d Zeilen", counter);
 
 //Erstellt ein Array für die ganze Datei
    arlength  = counter;
    arrayinput =  calloc(arlength, sizeof(char*));
 
-	for(int i = 0; i<=arlength; i++){
+	for(int i = 0; i < arlength; i++){
 	   arrayinput[i] = calloc(200,sizeof(char));
 	}
         counter = 0;
      
-      while(fgets(buff,255,file)){
-	snprintf(array[counter],255, "%s", buff);
+        while(fgets(buff,255,file)){
+	snprintf(arrayinput[counter],255, "%s", buff);
 	counter++;
       }
 
-//Array für die Keywords wird erstellt
-    keywordarray# = calloc(arlength, sizeof(char*));
-
-	for(int i = 0;i<=arlength;i++){
-	   keywordarray#[i] = calloc(5, sizeof(char));
+//BackupArray für die Keywords wird erstellt
+    backupKeywordArray = calloc(arlength, sizeof(char*));
+	for(int i = 0;i < arlength;i++){
+	   backupKeywordArray[i] = calloc(5, sizeof(char));
 	}
 
-    keywordarray$ = calloc(arlength, sizeof(char*));
-
+    backupLocationArray = calloc(arlength, sizeof(int*));
 	for(int i = 0;i<=arlength;i++){
-	   keywordarray$[i] = calloc(5,sizeof(char));
+	   backupLocationArray[i] = calloc(2,sizeof(int));
 	}
-//Die _Datei wird nach Keywords durchsucht
+//Die Datei wird nach Keywords durchsucht und in ein Backuparray kopiert
     for(int i = 0;i<=arlength;i++){
-	int strstrausgabe = strstr(arrayinput[i],#); 
-	if(strstr(arrayinput[i], #) > 0){
-	  snprintf(keywordarray#[i][strstrausgabe],5, "%s", arrayinput[i]);
+	strstrausgabe = 0;
+	strstrausgabe = strstr(arrayinput[i],"#"); 
+	strstrausgabe2 = 0;
+	strstrausgabe2 = strstr(arrayinput[i],"$"); 
+	if(strstrausgabe > 0){
+	  snprintf(backupKeywordArray[i],5, "%4s", &(arrayinput[i][strstrausgabe]));
+	  snprintf(backupLocationArray[i],2, "%d", strstrausgabe);
+	}else if(strstrausgabe2 > 0){
+	  snprintf(backupKeywordArray[i],5, "%4s", &(arrayinput[i][strstrausgabe2]));
+	  snprintf(backupLocationArray[i],2, "%d" , strstrausgabe2);
+	
 	}
-	if(strstr(arrayinput[i],$) > 0){
-	  snprintf(keywordarray$[i][strstrausgabe],5, "%s", arrayinput[i]);
+      }	
+//Die Datei wird auf das Array zum durchchecken kopiert
+	keywordArray = calloc(arlength, sizeof(char*));
+	for(int i = 0; i<= arlength; i++){
+	   keywordArray[i] = calloc(5, sizeof(char));
+	}
+	keywordLocation = calloc(arlength, sizeof(int*));
+	for(int i = 0; i<= arlength; i++){
+	   keywordLocation[i] = calloc(5, sizeof(int));
+	}
+	for(int i = 0; i<=arlength; i++){
+	snprintf(keywordArray[i], 5, "s", &(arrayinput[i]));
 	}
 
 
-  
+
+
+
+
   return returnValue;
 }
