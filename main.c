@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
 
     // Read and check file
     if(readFile(fileName, keywordLocation, keywordArray) > 0 ) {
-        dummy();
 
         return 0;
     }
