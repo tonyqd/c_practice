@@ -22,8 +22,12 @@ int readFile(char * fileName, int * keywordLocation, char ** keywordArray)
 {
   int returnValue = -1;
   int counter = 0;
+  int linecounter = 0;
   int fileLength = 0; 
-  int arlength;
+  int arraylength;
+  int arrayinputlength = 0;
+  int finalArraylength = 0;
+  int backupArraylength;
   int strstrausgabe;
   int strstrausgabe2;
   char **arrayinput;
@@ -41,48 +45,49 @@ int readFile(char * fileName, int * keywordLocation, char ** keywordArray)
     }
     rewind(file);
     fileLength = counter;
-    printf("\niese Datei hat %d Zeilen\n", fileLength);
+    printf("\nDiese Datei hat %d Zeilen\n", fileLength);
 
 //Erstellt ein Array für die ganze Datei
-   arlength  = counter;
-   arrayinput =  calloc(arlength, sizeof(char*));
+   arraylength  = counter;
+   arrayinput =  calloc(arraylength, sizeof(char*));
 
-	for(int i = 0; i < arlength; i++){
+	for(int i = 0; i < arraylength; i++){
 	   arrayinput[i] = calloc(200,sizeof(char));
 	}
         counter = 0;
      
         while(fgets(buff,255,file)){
-	snprintf(arrayinput[counter],255, "%s", buff);
-	counter++;
+	snprintf(arrayinput[arrayinputlength],255, "%s", buff);
+	arrayinputlength++;
       }
 
 //BackupArray für die Keywords wird erstellt
-    backupKeywordArray = calloc(arlength, sizeof(char*));
-	for(int i = 0;i < arlength;i++){
+backupArraylength = arraylength;
+    backupKeywordArray = calloc(backupArraylength, sizeof(char*));
+	for(int i = 0;i < backupArraylength;i++){
 	   backupKeywordArray[i] = calloc(5, sizeof(char));
 	}
 
-    backupLocationArray = calloc(arlength, sizeof(int*));
+    backupLocationArray = calloc(backupArraylength, sizeof(int*));
 
 //Die Datei wird nach Keywords durchsucht und in ein Backuparray kopiert
-counter = 0; // Man verwendet einen Counter und nicht i für das Array, sodass alle Zeilen, wo kein Keyword steht nicht nutzlos verwendet werden.
-printf("\narlength: %i\n", arlength);
-    for(int i = 0;i<arlength;i++){
+ // Man verwendet einen linecounterounter und nicht i für das Array, sodass alle Zeilen, wo kein Keyword steht nicht nutzlos verwendet werden.
+printf("\narlength: %i\n", backupArraylength);
+    for(int i = 0;i<backupArraylength;i++){
 	strstrausgabe = 0;
 	strstrausgabe = strstrAufloesung(arrayinput[i], "#");
 	strstrausgabe2 = 0;
 	strstrausgabe2 = strstrAufloesung(arrayinput[i], "$");
 	if(strstrausgabe > 0){
-	  snprintf(backupKeywordArray[counter], 5 , "%4s", &(arrayinput[i][strstrausgabe-1]));  //-1 für den Ausgleich der +1 für die Funktion oben damit die Position des Keywords gleich bleibt
-	  backupLocationArray[counter] = strstrausgabe;
-          printf("Zeile: %i Keyword: %s Location: %i \n",i,  backupKeywordArray[counter], backupLocationArray[counter]);
-	  counter++;
+	  snprintf(backupKeywordArray[linecounter], 5 , "%4s", &(arrayinput[i][strstrausgabe-1]));  //-1 für den Ausgleich der +1 für die Funktion oben damit die Position des Keywords gleich bleibt
+	  backupLocationArray[linecounter] = strstrausgabe;
+          printf("Zeile: %i Keyword: %s Location: %i \n",i,  backupKeywordArray[linecounter], backupLocationArray[linecounter]);
+	  linecounter++;
 	}else if(strstrausgabe2 > 0){
-	  snprintf(backupKeywordArray[counter], 5 , "%4s", &(arrayinput[i][strstrausgabe2-1]));
-	  backupLocationArray[counter] = strstrausgabe2;
-          printf("Zeile: %i Keyword: %s Location: %i \n",i,  backupKeywordArray[counter], backupLocationArray[counter]);
-	  counter++;
+	  snprintf(backupKeywordArray[linecounter], 5 , "%4s", &(arrayinput[i][strstrausgabe2-1]));
+	  backupLocationArray[linecounter] = strstrausgabe2;
+          printf("Zeile: %i Keyword: %s Location: %i \n",i,  backupKeywordArray[linecounter], backupLocationArray[linecounter]);
+	  linecounter++;
 	}
      }
 
@@ -104,25 +109,26 @@ printf("\narlength: %i\n", arlength);
 
 
 //Die Keywords werden auf das finale Array kopiert
-
-	keywordArray = calloc(counter, sizeof(char*));
-	for(int i = 0; i< counter; i++){
+printf("\n\n\n\ Linecounter: %d \n",linecounter);
+finalArraylength = linecounter;
+	keywordArray = calloc(finalArraylength, sizeof(char*));
+	for(int i = 0; i< finalArraylength; i++){
 	   keywordArray[i] = calloc(5, sizeof(char));
 	}
-        for(int i = 0; i<counter; i++){
+        for(int i = 0; i< finalArraylength; i++){
 	snprintf(keywordArray[i], 5, "%s", backupKeywordArray[i]);
 	}
 //Die Locations der Keywords werden auf das finale Array kopiert
-	keywordLocation = calloc(counter, sizeof(int));
-	for(int i = 0; i< counter; i++){
+	keywordLocation = calloc(finalArraylength, sizeof(int));
+	for(int i = 0; i< finalArraylength; i++){
 	   keywordLocation[i] = backupLocationArray[i];
 	}
 
-returnValue = counter;
+returnValue = finalArraylength;
 printf("returnValue: %i", returnValue);
 
   
-for(int i = 0; i < arlength; i++){
+for(int i = 0; i < finalArraylength; i++){
    free(backupKeywordArray[i]);
 }
 free(backupKeywordArray);
