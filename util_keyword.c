@@ -18,7 +18,7 @@ int strstrAufloesung(char *input, char *Keyword){
 
 }
 
-int readFile(char * fileName, int * keywordLocation, char ** keywordArray)
+int readFile(char * fileName, int ** keywordLocation, char *** keywordArray)   //2 bzw. 3 Sterne da das Array nur eine Adrersse für die main sein soll
 {
   int returnValue = -1;
   int counter = 0;
@@ -109,19 +109,19 @@ printf("\narlength: %i\n", backupArraylength);
 
 
 //Die Keywords werden auf das finale Array kopiert
-printf("\n\n\n\ Linecounter: %d \n",linecounter);
+printf("\n\n\n Linecounter: %d \n",linecounter);
 finalArraylength = linecounter;
-	keywordArray = calloc(finalArraylength, sizeof(char*));
+	*keywordArray = calloc(finalArraylength, sizeof(char*));
 	for(int i = 0; i< finalArraylength; i++){
-	   keywordArray[i] = calloc(5, sizeof(char));
+	   (*keywordArray)[i] = calloc(5, sizeof(char));
 	}
         for(int i = 0; i< finalArraylength; i++){
-	snprintf(keywordArray[i], 5, "%s", backupKeywordArray[i]);
+	snprintf((*keywordArray)[i], 5, "%s", backupKeywordArray[i]);
 	}
 //Die Locations der Keywords werden auf das finale Array kopiert
-	keywordLocation = calloc(finalArraylength, sizeof(int));
+	*keywordLocation = calloc(finalArraylength, sizeof(int));
 	for(int i = 0; i< finalArraylength; i++){
-	   keywordLocation[i] = backupLocationArray[i];
+	   (*keywordLocation)[i] = backupLocationArray[i];
 	}
 
 returnValue = finalArraylength;
