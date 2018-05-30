@@ -21,8 +21,8 @@ int main(int argc, char *argv[]) {
     struct keywordRecord *keywordRecord;
 
     // Read and check file
-    fileLength = readFile(fileName, keywordLocation, keywordArray);
-    printf("leudeee was ist den des: %s", &(keywordArray[0])[0]);
+    fileLength = readFile(fileName, &keywordLocation, &keywordArray);
+    printf("leudeee was ist den des: %s", (keywordArray[0]));
 //        if (fileLength > 0) {
 ////            dummy();
 //            return 0;
